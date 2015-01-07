@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'XBLanguage', :exclusive => true do
+  pod "XBLanguage", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "XBLanguage", :path => "../"
+
+  pod 'FBSnapshotTestCase'
+end
