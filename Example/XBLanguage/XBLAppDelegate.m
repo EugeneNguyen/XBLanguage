@@ -7,12 +7,14 @@
 //
 
 #import "XBLAppDelegate.h"
+#import <XBLanguage.h>
 
 @implementation XBLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [[XBLanguage sharedInstance] initialWithHost:@"http://ciplustest.libre.com.vn"];
+    NSLog(@"%@", XBText(@"testing", @"first screen"));
     return YES;
 }
 							

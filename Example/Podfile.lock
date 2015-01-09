@@ -1,6 +1,23 @@
 PODS:
+  - ASIHTTPRequest (1.8.2):
+    - ASIHTTPRequest/ASIWebPageRequest
+    - ASIHTTPRequest/CloudFiles
+    - ASIHTTPRequest/Core
+    - ASIHTTPRequest/S3
+  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/CloudFiles (1.8.2):
+    - ASIHTTPRequest/Core
+  - ASIHTTPRequest/Core (1.8.2):
+    - Reachability
+  - ASIHTTPRequest/S3 (1.8.2):
+    - ASIHTTPRequest/Core
   - FBSnapshotTestCase (1.4)
-  - XBLanguage (0.1.0)
+  - JSONKit-NoWarning (1.2)
+  - Reachability (3.2)
+  - XBLanguage (0.1.0):
+    - ASIHTTPRequest
+    - JSONKit-NoWarning
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -11,7 +28,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
+  ASIHTTPRequest: 2c8335b49410c0e2ad42829c438e74d454b77590
   FBSnapshotTestCase: f9f225b5ba11c8d8c09075590490df16314e4d62
-  XBLanguage: 249f9a14be584ccf3369c37604363e7abad5d8d2
+  JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
+  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
+  XBLanguage: 24d98f7519ca485fbeadf99800355dbaee7e7972
 
 COCOAPODS: 0.34.4
