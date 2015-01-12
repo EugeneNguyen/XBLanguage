@@ -18,6 +18,20 @@ it, simply add the following line to your Podfile:
 
     pod "XBLanguage"
 
+## How to use
+
+I. Import XBLanguage.h everywhere you want.
+II. Using following code
+
+```objective=c
+localizedLabel.text = XBText(@"YOUR_TEXT", @"THE_SCREEN");
+
+```
+
+or using with XIB file:
+
+
+
 ## Author
 
 eugenenguyen, xuanbinh91@gmail.com

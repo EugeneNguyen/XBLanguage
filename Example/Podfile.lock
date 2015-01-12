@@ -32,6 +32,6 @@ SPEC CHECKSUMS:
   FBSnapshotTestCase: f9f225b5ba11c8d8c09075590490df16314e4d62
   JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
-  XBLanguage: 24d98f7519ca485fbeadf99800355dbaee7e7972
+  XBLanguage: 09623a16e44f3d090387c5a8dac8abfd620d52c2
 
 COCOAPODS: 0.34.4
