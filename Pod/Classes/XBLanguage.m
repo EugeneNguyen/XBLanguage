@@ -21,7 +21,7 @@ static XBLanguage *__sharedLanguage = nil;
 
 @implementation XBLanguage
 @synthesize host;
-@synthesize language;
+@synthesize language = _language;
 
 + (XBLanguage *)sharedInstance
 {
@@ -31,6 +31,12 @@ static XBLanguage *__sharedLanguage = nil;
         __sharedLanguage.language = @"en";
     }
     return __sharedLanguage;
+}
+
+- (void)setLanguage:(NSString *)language
+{
+    _language = language;
+    [[NSUserDefaults standardUserDefaults] setObject:language forKey:@"XBLanguageSelectedLanguage"];
 }
 
 - (void)initialWithHost:(NSString *)_host
@@ -47,8 +53,8 @@ static XBLanguage *__sharedLanguage = nil;
     }
     else
     {
-        NSString * _language = [[NSLocale preferredLanguages] objectAtIndex:0];
-        [self suggestLanguage:_language];
+        NSString * __language = [[NSLocale preferredLanguages] objectAtIndex:0];
+        [self suggestLanguage:__language];
     }
     [self getVersion];
 }
@@ -74,10 +80,10 @@ static XBLanguage *__sharedLanguage = nil;
     }];
 }
 
-- (void)suggestLanguage:(NSString *)_language
+- (void)suggestLanguage:(NSString *)__language
 {
     ASIFormDataRequest *request = XBLanguageService(@"ask_language");
-    [request setPostValue:_language forKey:@"language"];
+    [request setPostValue:__language forKey:@"language"];
     [request startAsynchronous];
 }
 
@@ -134,13 +140,21 @@ static XBLanguage *__sharedLanguage = nil;
     {
         return key;
     }
-    NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, language]];
+    NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, _language]];
     if ([array count] == 0)
     {
         ASIFormDataRequest *request = XBLanguageService(@"add_text");
         [request addPostValue:key forKey:@"text"];
         [request addPostValue:screen forKey:@"screen"];
         [request startAsynchronous];
+        
+        array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, [[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"]]];
+        if ([array count] != 0)
+        {
+            XBL_storageText *text = [array lastObject];
+            return text.translatedText;
+        }
+        
         return key;
     }
     else
