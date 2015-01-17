@@ -15,7 +15,7 @@ PODS:
   - FBSnapshotTestCase (1.4)
   - JSONKit-NoWarning (1.2)
   - Reachability (3.2)
-  - XBLanguage (0.1.0):
+  - XBLanguage (0.2):
     - ASIHTTPRequest
     - JSONKit-NoWarning
 
@@ -32,6 +32,6 @@ SPEC CHECKSUMS:
   FBSnapshotTestCase: f9f225b5ba11c8d8c09075590490df16314e4d62
   JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
-  XBLanguage: 09623a16e44f3d090387c5a8dac8abfd620d52c2
+  XBLanguage: f330249efdb3e637f7b97bea504a49c7217a96e4
 
 COCOAPODS: 0.34.4
