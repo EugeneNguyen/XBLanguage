@@ -148,11 +148,14 @@ static XBLanguage *__sharedLanguage = nil;
         [request addPostValue:screen forKey:@"screen"];
         [request startAsynchronous];
         
-        array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, [[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"]]];
-        if ([array count] != 0)
+        if ([[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"])
         {
-            XBL_storageText *text = [array lastObject];
-            return text.translatedText;
+            array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, [[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"]]];
+            if ([array count] != 0)
+            {
+                XBL_storageText *text = [array lastObject];
+                return text.translatedText;
+            }
         }
         
         return key;
