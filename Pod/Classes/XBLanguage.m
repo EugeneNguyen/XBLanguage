@@ -140,6 +140,10 @@ static XBLanguage *__sharedLanguage = nil;
     {
         return key;
     }
+    if (screen == nil)
+    {
+        screen = @"default";
+    }
     NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, _language]];
     if ([array count] == 0)
     {
@@ -158,7 +162,7 @@ static XBLanguage *__sharedLanguage = nil;
             }
         }
         
-        return key;
+        return NSLocalizedString(key, nil);
     }
     else
     {
