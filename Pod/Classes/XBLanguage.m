@@ -35,6 +35,7 @@ static XBLanguage *__sharedLanguage = nil;
 
 - (void)setLanguage:(NSString *)language
 {
+    language = [[language componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"1234567890qwertyuiopasdghjklzxcvbnm"] invertedSet]] componentsJoinedByString:@""];
     [self suggestLanguage:language];
     _language = language;
     [[NSUserDefaults standardUserDefaults] setObject:language forKey:@"XBLanguageSelectedLanguage"];
