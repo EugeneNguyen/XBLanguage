@@ -40,7 +40,6 @@ static XBLanguage *__sharedLanguage = nil;
     if (self.isDebug) NSLog(@"[XBLanguage] set language: %@", language);
     [self suggestLanguage:language];
     _language = language;
-    [[NSUserDefaults standardUserDefaults] setObject:language forKey:@"XBLanguageSelectedLanguage"];
 }
 
 - (void)initialWithHost:(NSString *)_host
@@ -50,16 +49,16 @@ static XBLanguage *__sharedLanguage = nil;
     if ([[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguageSelectedLanguage"])
     {
         self.language = [[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguageSelectedLanguage"];
-        NSArray *find = [XBL_storageLanguage getFormat:@"name=%@" argument:@[self.language]];
-        if (find == 0)
-        {
-            self.language = [[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"];
-        }
     }
     else
     {
-        NSString * __language = [[NSLocale preferredLanguages] objectAtIndex:0];
-        [self suggestLanguage:__language];
+        self.language = [[NSLocale preferredLanguages] objectAtIndex:0];
+    }
+    NSArray *find = [XBL_storageLanguage getFormat:@"name=%@" argument:@[self.language]];
+    if (find == 0)
+    {
+        [self suggestLanguage:self.language];
+        self.language = [[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"];
     }
     [self getVersion];
 }
