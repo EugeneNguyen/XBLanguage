@@ -1,23 +1,33 @@
 PODS:
-  - ASIHTTPRequest (1.8.2):
-    - ASIHTTPRequest/ASIWebPageRequest
-    - ASIHTTPRequest/CloudFiles
-    - ASIHTTPRequest/Core
-    - ASIHTTPRequest/S3
-  - ASIHTTPRequest/ASIWebPageRequest (1.8.2):
-    - ASIHTTPRequest/Core
-  - ASIHTTPRequest/CloudFiles (1.8.2):
-    - ASIHTTPRequest/Core
-  - ASIHTTPRequest/Core (1.8.2):
-    - Reachability
-  - ASIHTTPRequest/S3 (1.8.2):
-    - ASIHTTPRequest/Core
-  - FBSnapshotTestCase (1.4)
+  - AFNetworking (2.5.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.5.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.1)
+  - AFNetworking/Security (2.5.1)
+  - AFNetworking/Serialization (2.5.1)
+  - AFNetworking/UIKit (2.5.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - FBSnapshotTestCase (1.5)
   - JSONKit-NoWarning (1.2)
-  - Reachability (3.2)
-  - XBLanguage (0.2):
-    - ASIHTTPRequest
+  - XBCacheRequest (0.1.2.2):
+    - AFNetworking
     - JSONKit-NoWarning
+  - XBLanguage (0.3.1.1):
+    - JSONKit-NoWarning
+    - XBCacheRequest
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -28,10 +38,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  ASIHTTPRequest: 2c8335b49410c0e2ad42829c438e74d454b77590
-  FBSnapshotTestCase: f9f225b5ba11c8d8c09075590490df16314e4d62
+  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
+  FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
   JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
-  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
-  XBLanguage: f330249efdb3e637f7b97bea504a49c7217a96e4
+  XBCacheRequest: 230af24355af68dda47b4dbc206f77ca55c52c4c
+  XBLanguage: add588266d608ddc52e886368e01ae635a296c74
 
 COCOAPODS: 0.34.4

@@ -7,6 +7,7 @@
 //
 
 #import "XBLViewController.h"
+#import <XBLanguage.h>
 
 @interface XBLViewController ()
 
@@ -16,14 +17,20 @@
 
 - (void)viewDidLoad
 {
+    UILabel
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdate:) name:XBLanguageUpdatedLanguage object:nil];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)didUpdate:(NSNotification *)notification
+{
+    NSLog(@"%@", notification.object);
 }
 
 @end

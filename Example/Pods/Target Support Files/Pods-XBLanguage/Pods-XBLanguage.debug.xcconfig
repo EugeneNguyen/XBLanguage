@@ -1,6 +1,6 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/ASIHTTPRequest" "${PODS_ROOT}/Headers/Public/FBSnapshotTestCase" "${PODS_ROOT}/Headers/Public/JSONKit-NoWarning" "${PODS_ROOT}/Headers/Public/Reachability" "${PODS_ROOT}/Headers/Public/XBLanguage" "$(SDKROOT)/usr/include/libxml2"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/ASIHTTPRequest" -isystem "${PODS_ROOT}/Headers/Public/FBSnapshotTestCase" -isystem "${PODS_ROOT}/Headers/Public/JSONKit-NoWarning" -isystem "${PODS_ROOT}/Headers/Public/Reachability" -isystem "${PODS_ROOT}/Headers/Public/XBLanguage"
-OTHER_LDFLAGS = -ObjC -l"Pods-XBLanguage-ASIHTTPRequest" -l"Pods-XBLanguage-JSONKit-NoWarning" -l"Pods-XBLanguage-Reachability" -l"Pods-XBLanguage-XBLanguage" -l"xml2.2" -l"z.1" -framework "CFNetwork" -framework "CoreGraphics" -framework "MobileCoreServices" -framework "SystemConfiguration"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/FBSnapshotTestCase" "${PODS_ROOT}/Headers/Public/JSONKit-NoWarning" "${PODS_ROOT}/Headers/Public/XBCacheRequest" "${PODS_ROOT}/Headers/Public/XBLanguage"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/FBSnapshotTestCase" -isystem "${PODS_ROOT}/Headers/Public/JSONKit-NoWarning" -isystem "${PODS_ROOT}/Headers/Public/XBCacheRequest" -isystem "${PODS_ROOT}/Headers/Public/XBLanguage"
+OTHER_LDFLAGS = -ObjC -l"Pods-XBLanguage-AFNetworking" -l"Pods-XBLanguage-JSONKit-NoWarning" -l"Pods-XBLanguage-XBCacheRequest" -l"Pods-XBLanguage-XBLanguage" -framework "CoreGraphics" -framework "MobileCoreServices" -framework "Security" -framework "SystemConfiguration"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 PODS_ROOT = ${SRCROOT}/Pods

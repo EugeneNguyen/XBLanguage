@@ -1,0 +1,1 @@
+../../../XBCacheRequest/Pod/Classes/XBPostRequestCacheManager.h
