@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad
 {
-    UILabel
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUpdate:) name:XBLanguageUpdatedLanguage object:nil];
 }

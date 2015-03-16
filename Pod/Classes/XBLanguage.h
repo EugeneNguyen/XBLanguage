@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+NSString *const XBLanguageUpdatedLanguage;
+
 #define XBText(X, Y) [[XBLanguage sharedInstance] stringForKey:X andScreen:Y]
 
 @interface XBLanguage : NSObject
