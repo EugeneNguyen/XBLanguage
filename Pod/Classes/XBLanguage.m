@@ -57,7 +57,7 @@ static XBLanguage *__sharedLanguage = nil;
         self.language = [[NSLocale preferredLanguages] objectAtIndex:0];
     }
     NSArray *find = [XBL_storageLanguage getFormat:@"name=%@" argument:@[self.language]];
-    if (find == 0)
+    if ([find count] == 0)
     {
         [self suggestLanguage:self.language];
         self.language = [[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"];
