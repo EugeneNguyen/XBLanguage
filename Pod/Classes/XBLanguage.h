@@ -31,6 +31,7 @@ NSString *const XBLanguageUpdatedLanguage;
 + (XBLanguage *)sharedInstance;
 
 - (void)initialWithHost:(NSString *)_host;
+- (void)initial;
 - (void)updateText;
 - (NSString *)stringForKey:(NSString *)key andScreen:(NSString *)screen;
 
