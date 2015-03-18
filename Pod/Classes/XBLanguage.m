@@ -191,6 +191,12 @@ static XBLanguage *__sharedLanguage = nil;
                                 @"screen": screen} mutableCopy]];
         [request startAsynchronousWithCallback:nil];
         
+        if (![[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"])
+        {
+            if (self.isDebug) NSLog(@"[XBLanguage] using key for text: %@ for %@ %@ %@", NSLocalizedString(key, nil), key, screen, self.language);
+            return NSLocalizedString(key, nil);
+        }
+        
         text = [self textFor:key screen:screen language:[[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"]];
         if (!text)
         {
