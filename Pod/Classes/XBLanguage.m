@@ -69,7 +69,6 @@ static XBLanguage *__sharedLanguage = nil;
     if ([find count] == 0)
     {
         [self suggestLanguage:self.language];
-        self.language = [[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"];
     }
     [self getVersion];
 }
@@ -183,23 +182,38 @@ static XBLanguage *__sharedLanguage = nil;
     {
         screen = @"default";
     }
-    NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, self.language]];
-    if ([array count] == 0)
+    
+    XBL_storageText *text = [self textFor:key screen:screen language:self.language];
+    if (!text)
     {
         XBCacheRequest *request = XBCacheRequest(@"pluslocalization/add_text");
         [request setDataPost:[@{@"text": key,
                                 @"screen": screen} mutableCopy]];
         [request startAsynchronousWithCallback:nil];
         
-        if (self.isDebug) NSLog(@"[XBLanguage] using default text: %@ for %@ %@ %@", NSLocalizedString(key, nil), key, screen, self.language);
-        return NSLocalizedString(key, nil);
+        text = [self textFor:key screen:screen language:[[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"]];
+        if (!text)
+        {
+            if (self.isDebug) NSLog(@"[XBLanguage] using key for text: %@ for %@ %@ %@", NSLocalizedString(key, nil), key, screen, self.language);
+            return NSLocalizedString(key, nil);
+        }
+        else
+        {
+            if (self.isDebug) NSLog(@"[XBLanguage] using primarylanguage for text: %@ for %@ %@ %@", NSLocalizedString(text.translatedText, nil), key, screen, self.language);
+            return text.translatedText;
+        }
     }
     else
     {
-        XBL_storageText *text = [array lastObject];
         if (self.isDebug) NSLog(@"[XBLanguage] using translated text: %@ for %@ %@ %@", text.translatedText, key, screen, self.language);
         return text.translatedText;
     }
+}
+
+- (XBL_storageText *)textFor:(NSString *)key screen:(NSString *)screen language:(NSString *)language
+{
+    NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, language]];
+    return [array lastObject];
 }
 
 #pragma mark - Core Data stack
