@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "XBLanguage"
-  s.version          = "0.3.1.1"
+  s.version          = "0.4.1"
   s.summary          = "Powerful localization library"
   s.description      = <<-DESC
                        A powerful library allow you localization with multiple language and editable on website. XBLanguage also provide ability to localization inside xib file, which native localization cannot do.
@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "eugenenguyen" => "xuanbinh91@gmail.com" }
   s.source           = { :git => "https://github.com/EugeneNguyen/XBLanguage.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/LIBRETeamStudio'
+  # s.social_media_url = 'https://twitter.com/LIBRETeamStudio'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true

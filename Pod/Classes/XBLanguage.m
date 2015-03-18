@@ -35,6 +35,12 @@ static XBLanguage *__sharedLanguage = nil;
     return __sharedLanguage;
 }
 
+- (void)selectLanguage:(NSString *)language
+{
+    [self setLanguage:language];
+    [[NSUserDefaults standardUserDefaults] setObject:self.language forKey:@"XBLanguageSelectedLanguage"];
+}
+
 - (void)setLanguage:(NSString *)language
 {
     language = [language stringByReplacingOccurrencesOfString:@"-" withString:@""];
@@ -177,7 +183,7 @@ static XBLanguage *__sharedLanguage = nil;
     {
         screen = @"default";
     }
-    NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, _language]];
+    NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, self.language]];
     if ([array count] == 0)
     {
         XBCacheRequest *request = XBCacheRequest(@"pluslocalization/add_text");

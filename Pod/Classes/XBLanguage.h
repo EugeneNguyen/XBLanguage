@@ -33,6 +33,7 @@ NSString *const XBLanguageUpdatedLanguage;
 - (void)initialWithHost:(NSString *)_host;
 - (void)initial;
 - (void)updateText;
+- (void)selectLanguage:(NSString *)language;
 - (NSString *)stringForKey:(NSString *)key andScreen:(NSString *)screen;
 
 @end

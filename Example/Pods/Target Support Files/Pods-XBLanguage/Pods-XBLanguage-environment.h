@@ -56,15 +56,13 @@
 
 // XBCacheRequest
 #define COCOAPODS_POD_AVAILABLE_XBCacheRequest
-// This library does not follow semantic-versioning,
-// so we were not able to define version macros.
-// Please contact the author.
-// Version: 0.1.2.2.
+#define COCOAPODS_VERSION_MAJOR_XBCacheRequest 0
+#define COCOAPODS_VERSION_MINOR_XBCacheRequest 3
+#define COCOAPODS_VERSION_PATCH_XBCacheRequest 2
 
 // XBLanguage
 #define COCOAPODS_POD_AVAILABLE_XBLanguage
-// This library does not follow semantic-versioning,
-// so we were not able to define version macros.
-// Please contact the author.
-// Version: 0.3.1.1.
+#define COCOAPODS_VERSION_MAJOR_XBLanguage 0
+#define COCOAPODS_VERSION_MINOR_XBLanguage 4
+#define COCOAPODS_VERSION_PATCH_XBLanguage 1
 
