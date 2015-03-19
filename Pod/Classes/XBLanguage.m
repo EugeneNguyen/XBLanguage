@@ -77,6 +77,8 @@ static XBLanguage *__sharedLanguage = nil;
 {
     if (self.isDebug) NSLog(@"[XBLanguage] start get version");
     XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/get_version"]);
+    request.disableIndicator = YES;
+    request.disableCache = YES;
     [request startAsynchronousWithCallback:^(XBCacheRequest *request, NSString *resultString, BOOL fromCache, NSError *error, id object) {
         
         if (object)
@@ -96,7 +98,6 @@ static XBLanguage *__sharedLanguage = nil;
             [self updateLanguage];
         }
     }];
-    request.disableCache = YES;
 }
 
 - (void)suggestLanguage:(NSString *)__language
@@ -104,17 +105,20 @@ static XBLanguage *__sharedLanguage = nil;
     if (self.isDebug) NSLog(@"[XBLanguage] start suggest language: %@", __language);
     
     XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/ask_language"]);
+    request.disableIndicator = YES;
+    request.disableCache = YES;
     [request setDataPost:[@{@"language": __language} mutableCopy]];
     [request startAsynchronousWithCallback:^(XBCacheRequest *request, NSString *result, BOOL fromCache, NSError *error, id object) {
         if (self.isDebug) NSLog(@"[XBLanguage] suggest language: %@", result);
     }];
-    request.disableCache = YES;
 }
 
 - (void)updateLanguage
 {
     if (self.isDebug) NSLog(@"[XBLanguage] start update language");
     XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/get_language_supported"]);
+    request.disableIndicator = YES;
+    request.disableCache = YES;
     [request startAsynchronousWithCallback:^(XBCacheRequest *request, NSString *resultString, BOOL fromCache, NSError *error, id object) {
         [XBL_storageLanguage clean];
         if (object)
@@ -134,13 +138,14 @@ static XBLanguage *__sharedLanguage = nil;
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self updateText];
     }];
-    request.disableCache = YES;
 }
 
 - (void)updateText
 {
     if (self.isDebug) NSLog(@"[XBLanguage] start update text");
     XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/get_list_text"]);
+    request.disableCache = YES;
+    request.disableIndicator = YES;
     [request startAsynchronousWithCallback:^(XBCacheRequest *request, NSString *resultString, BOOL fromCache, NSError *error, id object) {
         if (object)
         {
@@ -169,7 +174,6 @@ static XBLanguage *__sharedLanguage = nil;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:XBLanguageUpdatedLanguage object:nil];
     }];
-    request.disableCache = YES;
 }
 
 - (NSString *)stringForKey:(NSString *)key andScreen:(NSString *)screen
@@ -187,6 +191,8 @@ static XBLanguage *__sharedLanguage = nil;
     if (!text)
     {
         XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/add_text"]);
+        request.disableIndicator = YES;
+        request.disableCache = YES;
         [request setDataPost:[@{@"text": key,
                                 @"screen": screen} mutableCopy]];
         [request startAsynchronousWithCallback:nil];
@@ -224,7 +230,7 @@ static XBLanguage *__sharedLanguage = nil;
 
 - (NSString *)linkForPath:(NSString *)path
 {
-    if (host)
+    if (!host)
     {
         return path;
     }
