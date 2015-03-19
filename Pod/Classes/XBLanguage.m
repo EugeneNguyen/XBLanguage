@@ -76,7 +76,7 @@ static XBLanguage *__sharedLanguage = nil;
 - (void)getVersion
 {
     if (self.isDebug) NSLog(@"[XBLanguage] start get version");
-    XBCacheRequest *request = XBCacheRequest(@"pluslocalization/get_version");
+    XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/get_version"]);
     [request startAsynchronousWithCallback:^(XBCacheRequest *request, NSString *resultString, BOOL fromCache, NSError *error, id object) {
         
         if (object)
@@ -103,7 +103,7 @@ static XBLanguage *__sharedLanguage = nil;
 {
     if (self.isDebug) NSLog(@"[XBLanguage] start suggest language: %@", __language);
     
-    XBCacheRequest *request = XBCacheRequest(@"pluslocalization/ask_language");
+    XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/ask_language"]);
     [request setDataPost:[@{@"language": __language} mutableCopy]];
     [request startAsynchronousWithCallback:^(XBCacheRequest *request, NSString *result, BOOL fromCache, NSError *error, id object) {
         if (self.isDebug) NSLog(@"[XBLanguage] suggest language: %@", result);
@@ -114,7 +114,7 @@ static XBLanguage *__sharedLanguage = nil;
 - (void)updateLanguage
 {
     if (self.isDebug) NSLog(@"[XBLanguage] start update language");
-    XBCacheRequest *request = XBCacheRequest(@"pluslocalization/get_language_supported");
+    XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/get_language_supported"]);
     [request startAsynchronousWithCallback:^(XBCacheRequest *request, NSString *resultString, BOOL fromCache, NSError *error, id object) {
         [XBL_storageLanguage clean];
         if (object)
@@ -140,7 +140,7 @@ static XBLanguage *__sharedLanguage = nil;
 - (void)updateText
 {
     if (self.isDebug) NSLog(@"[XBLanguage] start update text");
-    XBCacheRequest *request = XBCacheRequest(@"pluslocalization/get_list_text");
+    XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/get_list_text"]);
     [request startAsynchronousWithCallback:^(XBCacheRequest *request, NSString *resultString, BOOL fromCache, NSError *error, id object) {
         if (object)
         {
@@ -186,7 +186,7 @@ static XBLanguage *__sharedLanguage = nil;
     XBL_storageText *text = [self textFor:key screen:screen language:self.language];
     if (!text)
     {
-        XBCacheRequest *request = XBCacheRequest(@"pluslocalization/add_text");
+        XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/add_text"]);
         [request setDataPost:[@{@"text": key,
                                 @"screen": screen} mutableCopy]];
         [request startAsynchronousWithCallback:nil];
@@ -220,6 +220,18 @@ static XBLanguage *__sharedLanguage = nil;
 {
     NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, language]];
     return [array lastObject];
+}
+
+- (NSString *)linkForPath:(NSString *)path
+{
+    if (host)
+    {
+        return path;
+    }
+    else
+    {
+        return [NSString stringWithFormat:@"%@/%@", host, path];
+    }
 }
 
 #pragma mark - Core Data stack
