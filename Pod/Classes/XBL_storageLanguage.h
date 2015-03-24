@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) NSString * shortname;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * support;
 
 + (void)addText:(NSDictionary *)item;
 + (NSArray *)getFormat:(NSString *)format argument:(NSArray *)argument;

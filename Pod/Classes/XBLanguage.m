@@ -132,7 +132,8 @@ static XBLanguage *__sharedLanguage = nil;
         for (NSDictionary *item in object[@"data"])
         {
             [XBL_storageLanguage addText:@{@"shortname": item[@"name"],
-                                           @"name": item[@"long_name"]}];
+                                           @"name": item[@"long_name"],
+                                           @"support": item[@"support"]}];
         }
         [[NSUserDefaults standardUserDefaults] setObject:object[@"primary"] forKey:@"XBLanguagePrimaryLanguage"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -224,7 +225,13 @@ static XBLanguage *__sharedLanguage = nil;
 
 - (XBL_storageText *)textFor:(NSString *)key screen:(NSString *)screen language:(NSString *)language
 {
-    NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and language=%@" argument:@[key, screen, language]];
+    NSArray *languages = [XBL_storageLanguage getFormat:@"shortname=%@ or support contains[cd] %@" argument:@[language, language]];
+    if ([languages count] == 0)
+    {
+        return nil;
+    }
+    XBL_storageLanguage *l = [languages firstObject];
+    NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and self.language=%@" argument:@[key, screen, l.shortname]];
     return [array lastObject];
 }
 

@@ -22,8 +22,12 @@ typedef BOOL (^XBCacheRequestPreProcessor)(XBCacheRequest * request, NSString * 
 @property (nonatomic, retain) NSString *host;
 @property (nonatomic, assign) BOOL enablePlusIgniter;
 @property (nonatomic, copy) XBCacheRequestPreProcessor callback;
+@property (nonatomic, assign) int numberOfRequest;
 
 + (XBCacheRequestManager *)sharedInstance;
 - (XBCacheRequest *)requestWithPath:(NSString *)path;
+
++ (void)showIndicator;
++ (void)hideIndicator;
 
 @end

@@ -13,6 +13,7 @@
 
 @dynamic shortname;
 @dynamic name;
+@dynamic support;
 
 + (void)addText:(NSDictionary *)item
 {
@@ -29,6 +30,7 @@
     }
     text.name = item[@"name"];
     text.shortname = item[@"shortname"];
+    text.support = item[@"support"];
     [[XBLanguage sharedInstance] saveContext];
 }
 

@@ -40,6 +40,7 @@ typedef void (^XBPostRequestCallback)(XBCacheRequest * request, NSString * resul
 @property (nonatomic, assign) BOOL disableCache;
 @property (nonatomic, assign) BOOL isRunning;
 @property (nonatomic, assign) XBCacherequestResponseType responseType;
+@property (nonatomic, assign) BOOL disableIndicator;
 
 + (XBCacheRequest *)requestWithURL:(NSURL *)url;
 

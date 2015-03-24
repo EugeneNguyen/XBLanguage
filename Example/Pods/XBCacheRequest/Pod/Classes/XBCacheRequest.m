@@ -15,6 +15,7 @@
 @synthesize dataPost = _dataPost, cacheDelegate, disableCache, url;
 @synthesize isRunning;
 @synthesize responseType;
+@synthesize disableIndicator;
 
 + (XBCacheRequest *)requestWithURL:(NSURL *)url
 {
@@ -70,7 +71,10 @@
     }
     
     isRunning = YES;
+    if (!disableIndicator) [XBCacheRequestManager showIndicator];
     AFHTTPRequestOperation *request = [[AFHTTPRequestOperationManager manager] POST:self.url parameters:_dataPost success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        if (!disableIndicator) [XBCacheRequestManager hideIndicator];
+        
         isRunning = NO;
         [XBM_storageRequest addCache:url postData:_dataPost response:operation.responseString];
         if (cacheDelegate && [cacheDelegate respondsToSelector:@selector(requestFinished:)])

@@ -22,10 +22,10 @@ PODS:
     - AFNetworking/NSURLSession
   - FBSnapshotTestCase (1.5)
   - JSONKit-NoWarning (1.2)
-  - XBCacheRequest (0.3.2):
+  - XBCacheRequest (0.4):
     - AFNetworking
     - JSONKit-NoWarning
-  - XBLanguage (0.4.1):
+  - XBLanguage (0.4.5):
     - JSONKit-NoWarning
     - XBCacheRequest
 
@@ -41,7 +41,7 @@ SPEC CHECKSUMS:
   AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
   FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
   JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
-  XBCacheRequest: ab7368c0020ebad6da62f34c7329ee02f9596d0d
-  XBLanguage: 4a2f1ffa94aa89061765a6629c169ea3f79cee60
+  XBCacheRequest: baa534f535564a2f3281cc926b44f2c89b283a3c
+  XBLanguage: 700ef1c95f6f67f64152dfc55a09ff181dc1b1fc
 
 COCOAPODS: 0.34.4

@@ -11,5 +11,6 @@
 @interface UITextField (xblanguage)
 
 @property (nonatomic, retain) NSString *screen;
+@property (nonatomic, retain) NSString *placeHolderScreen;
 
 @end
