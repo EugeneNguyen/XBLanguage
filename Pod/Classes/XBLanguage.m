@@ -39,6 +39,7 @@ static XBLanguage *__sharedLanguage = nil;
 {
     [self setLanguage:language];
     [[NSUserDefaults standardUserDefaults] setObject:self.language forKey:@"XBLanguageSelectedLanguage"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)setLanguage:(NSString *)language
