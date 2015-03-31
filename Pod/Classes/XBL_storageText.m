@@ -34,7 +34,6 @@
     text.screen = item[@"screen"];
     text.language = item[@"language"];
     text.translatedText = item[@"translatedText"];
-    [[XBLanguage sharedInstance] saveContext];
 }
 
 + (NSArray *)getFormat:(NSString *)format argument:(NSArray *)argument

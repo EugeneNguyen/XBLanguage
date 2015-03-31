@@ -174,6 +174,7 @@ static XBLanguage *__sharedLanguage = nil;
                 }
             }
         }
+        [[XBLanguage sharedInstance] saveContext];
         [[NSNotificationCenter defaultCenter] postNotificationName:XBLanguageUpdatedLanguage object:nil];
     }];
 }
@@ -192,16 +193,10 @@ static XBLanguage *__sharedLanguage = nil;
     XBL_storageText *text = [self textFor:key screen:screen language:self.language];
     if (!text)
     {
-        XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/add_text"]);
-        request.disableIndicator = YES;
-        request.disableCache = YES;
-        [request setDataPost:[@{@"text": key,
-                                @"screen": screen} mutableCopy]];
-        [request startAsynchronousWithCallback:nil];
-        
         if (![[NSUserDefaults standardUserDefaults] stringForKey:@"XBLanguagePrimaryLanguage"])
         {
             if (self.isDebug) NSLog(@"[XBLanguage] using key for text: %@ for %@ %@ %@", NSLocalizedString(key, nil), key, screen, self.language);
+            [self suggest:key screen:screen];
             return NSLocalizedString(key, nil);
         }
         
@@ -209,6 +204,7 @@ static XBLanguage *__sharedLanguage = nil;
         if (!text)
         {
             if (self.isDebug) NSLog(@"[XBLanguage] using key for text: %@ for %@ %@ %@", NSLocalizedString(key, nil), key, screen, self.language);
+            [self suggest:key screen:screen];
             return NSLocalizedString(key, nil);
         }
         else
@@ -234,6 +230,16 @@ static XBLanguage *__sharedLanguage = nil;
     XBL_storageLanguage *l = [languages firstObject];
     NSArray *array = [XBL_storageText getFormat:@"text=%@ and screen=%@ and self.language=%@" argument:@[key, screen, l.shortname]];
     return [array lastObject];
+}
+
+- (void)suggest:(NSString *)key screen:(NSString *)screen
+{
+    XBCacheRequest *request = XBCacheRequest([self linkForPath:@"pluslocalization/add_text"]);
+    request.disableIndicator = YES;
+    request.disableCache = YES;
+    [request setDataPost:[@{@"text": key,
+                            @"screen": screen} mutableCopy]];
+    [request startAsynchronousWithCallback:nil];
 }
 
 - (NSString *)linkForPath:(NSString *)path

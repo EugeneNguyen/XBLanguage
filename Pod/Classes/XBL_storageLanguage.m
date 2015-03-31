@@ -30,7 +30,7 @@
     }
     text.name = item[@"name"];
     text.shortname = item[@"shortname"];
-    text.support = item[@"support"];
+    text.support = item[@"support"] != [NSNull null] ? item[@"support"] : @"";
     [[XBLanguage sharedInstance] saveContext];
 }
 
