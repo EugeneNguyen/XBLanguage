@@ -12,7 +12,7 @@
 #import "JSONKit.h"
 #import "XBCacheRequest.h"
 
-NSString *const XBLanguageUpdatedLanguage = @"XBLanguageUpdatedLanguage";
+static NSString * XBLanguageUpdatedLanguage = @"XBLanguageUpdatedLanguage";
 
 static XBLanguage *__sharedLanguage = nil;
 
