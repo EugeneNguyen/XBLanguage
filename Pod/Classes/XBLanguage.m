@@ -11,12 +11,16 @@
 #import "XBL_storageLanguage.h"
 #import "JSONKit.h"
 #import "XBCacheRequest.h"
+#import "XBExtension.h"
 
 static NSString * XBLanguageUpdatedLanguage = @"XBLanguageUpdatedLanguage";
 
 static XBLanguage *__sharedLanguage = nil;
 
 @interface XBLanguage ()
+{
+    
+}
 
 @end
 
@@ -251,6 +255,36 @@ static XBLanguage *__sharedLanguage = nil;
     else
     {
         return [NSString stringWithFormat:@"%@/%@", host, path];
+    }
+}
+
+// Process with plist only
+
+- (void)loadDefaultPlist:(NSString *)plist
+{
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfPlist:plist];
+    NSInteger recentVersion = [[NSUserDefaults standardUserDefaults] integerForKey:@"XBLanguageVersion"];
+    if (recentVersion == 0)
+    {
+        int plistVersion = [dict[@"version"] intValue];
+        [[NSUserDefaults standardUserDefaults] setInteger:plistVersion forKey:@"XBLanguageVersion"];
+        
+        for (NSString *language in [dict[@"languages"] allKeys])
+        {
+            NSDictionary *languageInformation = dict[@"languages"][language];
+            
+            [XBL_storageLanguage addText:@{@"shortname": languageInformation[@"shortname"],
+                                           @"name": languageInformation[@"name"],
+                                           @"support": languageInformation[@"support"]}];
+            for (NSDictionary * textInformation in languageInformation[@"text"])
+            {
+                [XBL_storageText addText:@{@"text": textInformation[@"text"],
+                                           @"screen": textInformation[@"screen"],
+                                           @"language": language,
+                                           @"translatedText": textInformation[@"translatedText"]}];
+            }
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 

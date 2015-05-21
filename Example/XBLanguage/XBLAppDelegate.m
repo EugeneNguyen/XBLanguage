@@ -13,8 +13,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[XBLanguage sharedInstance] loadDefaultPlist:@"languages"];
     [[XBLanguage sharedInstance] initialWithHost:@"http://ciplustest.libre.com.vn"];
-    NSLog(@"%@", XBText(@"testing", @"first screen"));
     return YES;
 }
 							

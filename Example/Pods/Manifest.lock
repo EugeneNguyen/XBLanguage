@@ -1,33 +1,40 @@
 PODS:
-  - AFNetworking (2.5.1):
+  - AFNetworking (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.5.1):
+  - AFNetworking/NSURLConnection (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.1):
+  - AFNetworking/NSURLSession (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.1)
-  - AFNetworking/Security (2.5.1)
-  - AFNetworking/Serialization (2.5.1)
-  - AFNetworking/UIKit (2.5.1):
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - FBSnapshotTestCase (1.5)
+  - AVHexColor (2.0.0)
+  - FBSnapshotTestCase (1.8.1)
   - JSONKit-NoWarning (1.2)
-  - XBCacheRequest (0.4):
+  - MBProgressHUD (0.9.1)
+  - XBCacheRequest (0.5.3):
     - AFNetworking
     - JSONKit-NoWarning
-  - XBLanguage (0.4.5):
+    - MBProgressHUD
+  - XBExtension (0.2.2):
+    - AVHexColor
+    - MBProgressHUD
+  - XBLanguage (0.6):
     - JSONKit-NoWarning
     - XBCacheRequest
+    - XBExtension
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -38,10 +45,13 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
-  FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
-  JSONKit-NoWarning: fc8d6dd8ec65e303867d1bd274632fc60a4a8ab9
-  XBCacheRequest: baa534f535564a2f3281cc926b44f2c89b283a3c
-  XBLanguage: 700ef1c95f6f67f64152dfc55a09ff181dc1b1fc
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  AVHexColor: 33e5e102f3b6f3acd002779183ee226e21870c28
+  FBSnapshotTestCase: 3dc3899168747a0319c5278f5b3445c13a6532dd
+  JSONKit-NoWarning: 3d27e6f9e6846ecf741e8c64dcadd7d5aa7193cb
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  XBCacheRequest: 66a9da85583a4ce9cf3f5c44aab67685690364d3
+  XBExtension: 9d28c62dbfd425abaae4ffcb0ca92fb461acc89f
+  XBLanguage: 3cf7fe31d5a226288ab201f42afdb653f7bbf834
 
 COCOAPODS: 0.34.4

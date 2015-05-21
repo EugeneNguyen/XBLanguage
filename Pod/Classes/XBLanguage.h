@@ -35,5 +35,6 @@ static NSString * XBLanguageUpdatedLanguage;
 - (void)updateText;
 - (void)selectLanguage:(NSString *)language;
 - (NSString *)stringForKey:(NSString *)key andScreen:(NSString *)screen;
+- (void)loadDefaultPlist:(NSString *)plist;
 
 @end

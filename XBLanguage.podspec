@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "XBLanguage"
-  s.version          = "0.5.1.1"
+  s.version          = "1.0"
   s.summary          = "Powerful localization library"
   s.description      = <<-DESC
                        A powerful library allow you localization with multiple language and editable on website. XBLanguage also provide ability to localization inside xib file, which native localization cannot do.
@@ -33,4 +33,5 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'XBCacheRequest'
   s.dependency 'JSONKit-NoWarning'
+  s.dependency 'XBExtension'
 end
