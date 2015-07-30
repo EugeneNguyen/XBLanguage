@@ -125,7 +125,6 @@ static XBLanguage *__sharedLanguage = nil;
     request.disableIndicator = YES;
     request.disableCache = YES;
     [request startAsynchronousWithCallback:^(XBCacheRequest *request, NSString *resultString, BOOL fromCache, NSError *error, id object) {
-        [XBL_storageLanguage clean];
         if (object)
         {
             if (self.isDebug)  NSLog(@"[XBLanguage] update language: %@", object);
@@ -134,15 +133,19 @@ static XBLanguage *__sharedLanguage = nil;
         {
             if (self.isDebug) NSLog(@"[XBLanguage] update language: %@", resultString);
         }
-        for (NSDictionary *item in object[@"data"])
+        if (object)
         {
-            [XBL_storageLanguage addText:@{@"shortname": item[@"name"],
-                                           @"name": item[@"long_name"],
-                                           @"support": item[@"support"]}];
+            [XBL_storageLanguage clean];
+            for (NSDictionary *item in object[@"data"])
+            {
+                [XBL_storageLanguage addText:@{@"shortname": item[@"name"],
+                                               @"name": item[@"long_name"],
+                                               @"support": item[@"support"]}];
+            }
+            [[NSUserDefaults standardUserDefaults] setObject:object[@"primary"] forKey:@"XBLanguagePrimaryLanguage"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self updateText];
         }
-        [[NSUserDefaults standardUserDefaults] setObject:object[@"primary"] forKey:@"XBLanguagePrimaryLanguage"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self updateText];
     }];
 }
 
@@ -284,8 +287,14 @@ static XBLanguage *__sharedLanguage = nil;
                                            @"translatedText": textInformation[@"translatedText"]}];
             }
         }
+        [[XBLanguage sharedInstance] saveContext];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+}
+
+- (NSArray *)allLanguages:(XBLGetAllLanguage)callback
+{
+    return [XBL_storageLanguage getAll];
 }
 
 #pragma mark - Core Data stack

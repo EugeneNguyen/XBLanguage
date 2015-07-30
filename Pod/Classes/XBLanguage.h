@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 static NSString * XBLanguageUpdatedLanguage;
+typedef void (^XBLGetAllLanguage)();
 
 #define XBText(X, Y) [[XBLanguage sharedInstance] stringForKey:X andScreen:Y]
 
@@ -36,5 +37,6 @@ static NSString * XBLanguageUpdatedLanguage;
 - (void)selectLanguage:(NSString *)language;
 - (NSString *)stringForKey:(NSString *)key andScreen:(NSString *)screen;
 - (void)loadDefaultPlist:(NSString *)plist;
+- (NSArray *)allLanguages:(XBLGetAllLanguage)callback;
 
 @end
